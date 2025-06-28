@@ -30,5 +30,6 @@ def filter_alerts_by_agent(agent_name):
 
 # 🧹 Clear all alerts
 def clear_alerts():
+    ensure_alerts_file()  # optional safeguard
     with open(alerts_file_path, "w") as f:
         json.dump([], f)
