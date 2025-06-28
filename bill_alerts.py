@@ -1,20 +1,27 @@
 # bill_alerts.py
 
-import datetime
+# Global in-memory alert store
+_alerts = []
 
-ALERT_LOG = []
+def get_recent_alerts():
+    """Return the last 10 alerts."""
+    return _alerts[-10:]
 
-def log_alert(agent_name, alert_message):
-    timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    ALERT_LOG.append({
-        "agent": agent_name,
-        "message": alert_message,
-        "timestamp": timestamp
-    })
-
-def get_recent_alerts(limit=10):
-    return ALERT_LOG[-limit:]
+def filter_alerts_by_agent(agent_name):
+    """Filter alerts by agent name."""
+    return [alert for alert in _alerts if alert.get("agent") == agent_name]
 
 def clear_alerts():
-    ALERT_LOG.clear()
-    return "✅ All alerts cleared."
+    """Clear all stored alerts."""
+    global _alerts
+    _alerts = []
+    return "All alerts cleared."
+
+def push_alert(agent_name, message):
+    """Add a new alert for a specific agent."""
+    from datetime import datetime
+    _alerts.append({
+        "agent": agent_name,
+        "message": message,
+        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    })
