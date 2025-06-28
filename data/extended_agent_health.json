@@ -1,0 +1,62 @@
+[
+  {
+    "agent_name": "Jordan",
+    "status": "active",
+    "last_active": "2025-06-27T08:00:00",
+    "issues": [],
+    "assigned_team_member": "Coach K",
+    "assigned_department": "Onboarding",
+    "weekly_activity_logs": 12,
+    "tasks_processed": 34,
+    "handoff_frequency": 2,
+    "sentiment_score": 8.9
+  },
+  {
+    "agent_name": "Lisa",
+    "status": "active",
+    "last_active": "2025-06-27T07:45:00",
+    "issues": ["High parent volume"],
+    "assigned_team_member": "Mrs. Brown",
+    "assigned_department": "Family Support",
+    "weekly_activity_logs": 18,
+    "tasks_processed": 57,
+    "handoff_frequency": 5,
+    "sentiment_score": 7.5
+  },
+  {
+    "agent_name": "Kobe",
+    "status": "active",
+    "last_active": "2025-06-27T07:30:00",
+    "issues": [],
+    "assigned_team_member": "Coach Bryant",
+    "assigned_department": "Training & Preparation",
+    "weekly_activity_logs": 25,
+    "tasks_processed": 68,
+    "handoff_frequency": 3,
+    "sentiment_score": 9.2
+  },
+  {
+    "agent_name": "Ebony",
+    "status": "active",
+    "last_active": "2025-06-27T07:20:00",
+    "issues": [],
+    "assigned_team_member": "Nurse Ebony",
+    "assigned_department": "Triage & Recovery",
+    "weekly_activity_logs": 11,
+    "tasks_processed": 24,
+    "handoff_frequency": 1,
+    "sentiment_score": 8.4
+  },
+  {
+    "agent_name": "Dawn",
+    "status": "active",
+    "last_active": "2025-06-27T07:00:00",
+    "issues": ["Repeat warnings triggered"],
+    "assigned_team_member": "Coach Dawn",
+    "assigned_department": "Emotional Reset",
+    "weekly_activity_logs": 19,
+    "tasks_processed": 41,
+    "handoff_frequency": 4,
+    "sentiment_score": 6.8
+  }
+]
