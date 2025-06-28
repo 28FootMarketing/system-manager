@@ -97,6 +97,5 @@ for alert in alerts_to_show:
     st.sidebar.warning(f"[{alert['timestamp']}] {alert['agent']}: {alert['message']}")
 
 # Clear button
-if st.sidebar.button("🧹 Clear All Alerts"):
-    clear_alerts()
+if st.sidebar.button("🧹 Clear All Alerts", key="clear_alerts_btn"):
     st.sidebar.success("All alerts cleared.")
