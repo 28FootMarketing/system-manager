@@ -3,8 +3,8 @@ import streamlit as st
 import datetime
 from utils.bill_logic import run_ops, check_ai_status, push_alerts, download_report
 import pytz  # If using Python < 3.9
-download_report
 from bill_config import get_current_est_time
+from bill_alerts import get_recent_alerts
 
 st.set_page_config(page_title="Bill - System Monitor", layout="wide")
 
@@ -51,5 +51,13 @@ if st.button("🚨 Push Team Alerts"):
 
 if st.button("🧾 Download Weekly Report"):
     download_report()
+
+st.markdown("### 🔔 Recent Alerts")
+recent_alerts = get_recent_alerts()
+if recent_alerts:
+    for alert in reversed(recent_alerts):
+        st.error(f"[{alert['timestamp']}] {alert['agent']}: {alert['message']}")
+else:
+    st.success("✅ No recent alerts logged.")
 
 st.info("Bill manages your backend systems, automation checks, and agent alerts.")
