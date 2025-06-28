@@ -36,7 +36,9 @@ if st.sidebar.button("🚨 Simulate Alert"):
 
 if st.sidebar.button("📥 Download Report"):
     st.info(download_report())
-
+if st.sidebar.button("🔍 View Alerts", key="view_alerts_btn"):
+    show_alerts()
+    
 st.markdown("### Logs and Alerts")
 st.write("Command outputs will display above based on sidebar interaction.")
 
@@ -98,4 +100,5 @@ for alert in alerts_to_show:
 
 # Clear button
 if st.sidebar.button("🧹 Clear All Alerts", key="clear_alerts_btn"):
+    clear_alerts()
     st.sidebar.success("All alerts cleared.")
