@@ -9,6 +9,11 @@ from bill_alerts import get_recent_alerts, filter_alerts_by_agent, clear_alerts
 from agent_monitors import monitor_agent_health
 from bill_alerts import push_alerts
 
+# 📡 Health sync from extended_agent_health.json
+synced_alerts = monitor_agent_health()
+if synced_alerts:
+    push_alerts(synced_alerts)
+
 # Diagnostics Header
 st.sidebar.header("🧠 Bill Diagnostic Checklist")
 
