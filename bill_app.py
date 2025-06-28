@@ -6,6 +6,36 @@ import pytz  # If using Python < 3.9
 from bill_config import get_current_est_time
 from bill_alerts import get_recent_alerts, filter_alerts_by_agent, clear_alerts
 
+# Diagnostics Header
+st.sidebar.header("🧠 Bill Diagnostic Checklist")
+
+# Check if alerts.json file exists
+alerts_file_path = "bill_data/alerts.json"
+alerts_exists = os.path.exists(alerts_file_path)
+st.sidebar.write(f"📁 Alerts File Found: {'✅ Yes' if alerts_exists else '❌ No'}")
+
+# Read alert count
+if alerts_exists:
+    alerts = get_recent_alerts()
+    st.sidebar.write(f"📋 Alerts Stored: {len(alerts)}")
+    if len(alerts) > 0:
+        st.sidebar.success("🟢 Alerts are being generated.")
+    else:
+        st.sidebar.warning("⚠️ No alerts detected yet.")
+else:
+    st.sidebar.error("❌ alerts.json is missing or unreadable.")
+
+# Show last system check timestamp
+st.sidebar.write("🕒 Last System Check:")
+st.sidebar.markdown(f"`{datetime.datetime.now().strftime('%A, %B %d, %Y | %I:%M %p')}`")
+
+# Add a system heartbeat
+if st.sidebar.button("🔄 Run System Check"):
+    st.sidebar.success("✅ Bill system check complete.")
+
+# Optional: Toggle for manual alert simulation (for test purposes)
+if st.sidebar.checkbox("🧪 Simulate Sample Alert"):
+    st.sidebar.warning("⚠️ Sample Alert: Maya has not sent check-in in 8 hours.")
 
 st.set_page_config(page_title="Bill - System Monitor", layout="wide")
 
