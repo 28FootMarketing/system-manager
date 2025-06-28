@@ -22,7 +22,11 @@ def get_recent_alerts():
     ensure_alerts_file()
     with open(alerts_file_path, "r") as f:
         return json.load(f)
-
+def push_alerts(new_alerts):
+    existing = get_recent_alerts()
+    combined = existing + new_alerts
+    with open(alerts_file_path, "w") as f:
+        json.dump(combined, f, indent=2)
 # 🔍 Filter alerts by agent
 def filter_alerts_by_agent(agent_name):
     alerts = get_recent_alerts()
@@ -33,3 +37,4 @@ def clear_alerts():
     ensure_alerts_file()  # optional safeguard
     with open(alerts_file_path, "w") as f:
         json.dump([], f)
+
