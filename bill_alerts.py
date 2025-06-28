@@ -1,27 +1,34 @@
-# bill_alerts.py
+import json
+import os
 
-# Global in-memory alert store
-_alerts = []
+alerts_file_path = "alerts.json"
 
+# ✅ Ensure alerts.json exists and is readable
+def ensure_alerts_file():
+    if not os.path.exists(alerts_file_path):
+        with open(alerts_file_path, "w") as f:
+            json.dump([], f)
+    else:
+        try:
+            with open(alerts_file_path, "r") as f:
+                json.load(f)
+        except (json.JSONDecodeError, IOError):
+            # Recreate a clean file if corrupted
+            with open(alerts_file_path, "w") as f:
+                json.dump([], f)
+
+# 🧠 Load alerts
 def get_recent_alerts():
-    """Return the last 10 alerts."""
-    return _alerts[-10:]
+    ensure_alerts_file()
+    with open(alerts_file_path, "r") as f:
+        return json.load(f)
 
+# 🔍 Filter alerts by agent
 def filter_alerts_by_agent(agent_name):
-    """Filter alerts by agent name."""
-    return [alert for alert in _alerts if alert.get("agent") == agent_name]
+    alerts = get_recent_alerts()
+    return [alert for alert in alerts if alert.get("agent") == agent_name]
 
+# 🧹 Clear all alerts
 def clear_alerts():
-    """Clear all stored alerts."""
-    global _alerts
-    _alerts = []
-    return "All alerts cleared."
-
-def push_alert(agent_name, message):
-    """Add a new alert for a specific agent."""
-    from datetime import datetime
-    _alerts.append({
-        "agent": agent_name,
-        "message": message,
-        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    })
+    with open(alerts_file_path, "w") as f:
+        json.dump([], f)
