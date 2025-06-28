@@ -2,7 +2,7 @@
 import streamlit as st
 import datetime
 import pytz  # If using Python < 3.9
-from utils.logic import run_ops, check_ai_status, push_alerts, download_report
+from utils.bill_logic import run_ops, check_ai_status, push_alerts, download_report
 
 # Set up the page
 st.set_page_config(page_title="Bill: The General | Facilitate The Process", layout="wide")
