@@ -1,6 +1,15 @@
 import json
 import os
+from datetime import datetime
 
+def push_alerts(new_alerts):
+    for alert in new_alerts:
+        if "timestamp" not in alert:
+            alert["timestamp"] = datetime.now().isoformat()
+    existing = get_recent_alerts()
+    combined = existing + new_alerts
+    with open(alerts_file_path, "w") as f:
+        json.dump(combined, f, indent=2)
 alerts_file_path = "alerts.json"
 
 # ✅ Ensure alerts.json exists and is readable
