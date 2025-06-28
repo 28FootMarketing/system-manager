@@ -40,3 +40,22 @@ async def monitor_agents():
     while True:
         # check each agent's response health
         await asyncio.sleep(900)  # every 15 min
+        from agent_monitors import (
+    monitor_lisa, monitor_maya, monitor_kobe, monitor_magic,
+    monitor_serena, monitor_dawn, monitor_ebony, monitor_reggie,
+    monitor_alexis, monitor_kaiyon
+)
+
+def run_ops():
+    results = []
+    results.append(monitor_lisa())
+    results.append(monitor_maya())
+    results.append(monitor_kobe())
+    results.append(monitor_magic())
+    results.append(monitor_serena())
+    results.append(monitor_dawn())
+    results.append(monitor_ebony())
+    results.append(monitor_reggie())
+    results.append(monitor_alexis())
+    results.append(monitor_kaiyon())
+    return results
