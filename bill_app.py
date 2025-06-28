@@ -6,6 +6,8 @@ from utils.bill_logic import run_ops, check_ai_status, push_alerts, download_rep
 import pytz  # If using Python < 3.9
 from bill_config import get_current_est_time
 from bill_alerts import get_recent_alerts, filter_alerts_by_agent, clear_alerts
+from agent_monitors import monitor_agent_health
+from bill_alerts import push_alerts
 
 # Diagnostics Header
 st.sidebar.header("🧠 Bill Diagnostic Checklist")
