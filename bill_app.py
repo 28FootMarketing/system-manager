@@ -37,7 +37,9 @@ if st.sidebar.button("🚨 Simulate Alert"):
 if st.sidebar.button("📥 Download Report"):
     st.info(download_report())
 if st.sidebar.button("🔍 View Alerts", key="view_alerts_btn"):
-    show_alerts()
+    alerts = get_recent_alerts()
+    for alert in alerts:
+        st.sidebar.warning(f"⚠️ {alert}")
     
 st.markdown("### Logs and Alerts")
 st.write("Command outputs will display above based on sidebar interaction.")
