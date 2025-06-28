@@ -8,6 +8,11 @@ from bill_config import get_current_est_time
 from bill_alerts import get_recent_alerts, filter_alerts_by_agent, clear_alerts
 from bill_agent_monitors import monitor_agent_health
 from bill_alerts import push_alerts
+from components.agent_status_card import show_agent_status
+from components.system_health_gauge import display_health_gauge
+from components.alert_notification_banner import show_alert_banner
+from components.agent_activity_log_viewer import show_activity_logs
+from components.visual_kpi_meter import display_kpi
 
 # 📡 Health sync from extended_agent_health.json
 synced_alerts = monitor_agent_health()
