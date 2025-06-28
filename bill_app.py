@@ -57,6 +57,7 @@ if st.button("🧾 Download Weekly Report"):
 if st.sidebar.button("🧹 Clear All Alerts"):
     st.success(clear_alerts())
 
+
 # Main content - Alert Display
 st.markdown("### 🔔 Recent Alerts")
 
@@ -76,3 +77,26 @@ else:
             st.error(f"[{alert['timestamp']}] {alert['agent']}: {alert['message']}")
     else:
         st.success("✅ No recent alerts logged.")
+
+# === Alert Management Section ===
+st.sidebar.markdown("### 🛑 System Alerts")
+
+# Agent filter dropdown
+selected_agent = st.sidebar.selectbox(
+    "Filter alerts by agent",
+    ["All"] + ["Kobe", "Lisa", "Maya", "Magic", "Dawn", "Ebony", "Reggie", "Serena", "Alexis", "Kaiyon"]
+)
+
+# Display alerts
+alerts_to_show = (
+    get_recent_alerts() if selected_agent == "All"
+    else filter_alerts_by_agent(selected_agent)
+)
+
+for alert in alerts_to_show:
+    st.sidebar.warning(f"[{alert['timestamp']}] {alert['agent']}: {alert['message']}")
+
+# Clear button
+if st.sidebar.button("🧹 Clear All Alerts"):
+    clear_alerts()
+    st.sidebar.success("All alerts cleared.")
